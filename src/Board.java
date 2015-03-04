@@ -47,7 +47,7 @@ public class Board extends JPanel implements Runnable, Commons {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-        dDim = new Dimension(iBOARD_WIDTH, iBOARD_HEIGHT);
+        dDim = new Dimension(iBOARD_WIDTH, iBOARD_HEIGTH);
         setBackground(Color.black);
 
         gameInit();
@@ -158,7 +158,7 @@ public class Board extends JPanel implements Runnable, Commons {
         Graphics graGraph = this.getGraphics();
 
         graGraph.setColor(Color.black);
-        graGraph.fillRect(0, 0, iBOARD_WIDTH, iBOARD_HEIGHT);
+        graGraph.fillRect(0, 0, iBOARD_WIDTH, iBOARD_HEIGTH);
 
         graGraph.setColor(new Color(0, 32, 48));
         graGraph.fillRect(50, iBOARD_WIDTH/2 - 30, iBOARD_WIDTH-100, 50);

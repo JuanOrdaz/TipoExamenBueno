@@ -13,46 +13,46 @@ import javax.swing.ImageIcon;
  */
 public class Alien extends Sprite {
 
-    private Bomb bomb;
-    private final String shot = "alien.png";
+    private Bomb bBomb;
+    private final String sShot = "alien.png";
 
     public Alien(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.iX = x;
+        this.iX = y;
 
-        bomb = new Bomb(x, y);
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(shot));
+        bBomb = new Bomb(x, y);
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(sShot));
         setImage(ii.getImage());
 
     }
 
     public void act(int direction) {
-        this.x += direction;
+        this.iX += direction;
     }
 
     public Bomb getBomb() {
-        return bomb;
+        return bBomb;
     }
 
     public class Bomb extends Sprite {
 
-        private final String bomb = "bomb.png";
-        private boolean destroyed;
+        private final String sBomb = "bomb.png";
+        private boolean bolDestroyed;
 
         public Bomb(int x, int y) {
             setDestroyed(true);
-            this.x = x;
-            this.y = y;
-            ImageIcon ii = new ImageIcon(this.getClass().getResource(bomb));
+            this.iX = x;
+            this.iX = y;
+            ImageIcon ii = new ImageIcon(this.getClass().getResource(sBomb));
             setImage(ii.getImage());
         }
 
         public void setDestroyed(boolean destroyed) {
-            this.destroyed = destroyed;
+            this.bolDestroyed = destroyed;
         }
 
         public boolean isDestroyed() {
-            return destroyed;
+            return bolDestroyed;
         }
     }
 }

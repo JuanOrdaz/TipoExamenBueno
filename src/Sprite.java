@@ -13,57 +13,57 @@ import java.awt.Image;
  */
 public class Sprite {
 
-        private boolean visible;
-        private Image image;
-        protected int x;
-        protected int y;
-        protected boolean dying;
-        protected int dx;
+        private boolean bolVisible;
+        private Image iImage;
+        protected int iX;
+        protected int iY;
+        protected boolean iDying;
+        protected int iDx;
 
         public Sprite() {
-            visible = true;
+            bolVisible = true;
         }
 
         public void die() {
-            visible = false;
+            bolVisible = false;
         }
 
         public boolean isVisible() {
-            return visible;
+            return bolVisible;
         }
 
         protected void setVisible(boolean visible) {
-            this.visible = visible;
+            this.bolVisible = visible;
         }
 
         public void setImage(Image image) {
-            this.image = image;
+            this.iImage = image;
         }
 
         public Image getImage() {
-            return image;
+            return iImage;
         }
 
         public void setX(int x) {
-            this.x = x;
+            this.iX = x;
         }
 
         public void setY(int y) {
-            this.y = y;
+            this.iY = y;
         }
         public int getY() {
-            return y;
+            return iY;
         }
 
         public int getX() {
-            return x;
+            return iX;
         }
 
         public void setDying(boolean dying) {
-            this.dying = dying;
+            this.iDying = dying;
         }
 
         public boolean isDying() {
-            return this.dying;
+            return this.iDying;
         }
 }
