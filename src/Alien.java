@@ -1,4 +1,6 @@
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /*
@@ -14,20 +16,31 @@ import javax.swing.ImageIcon;
 public class Alien extends Sprite {
 
     private Bomb bBomb;
-    private final String sShot = "alien.png";
 
-    public Alien(int x, int y) {
-        this.iX = x;
-        this.iX = y;
+    public Alien(int ix, int iy) {
+        //Posición del alien
+        this.ix = ix;
+        this.iy = iy;
 
-        bBomb = new Bomb(x, y);
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(sShot));
-        setImage(ii.getImage());
+        //Se crea la bomba donde está el alien
+        bBomb = new Bomb(ix, iy);
+        Animacion aniAlien;
+        // Imagenes del alien    
+	Image imAlien1 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("alien.png"));
+        Image imAlien2 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("alien2.png"));
+        
+        aniAlien = new Animacion();
+        aniAlien.sumaCuadro(imAlien1, 500);
+        aniAlien.sumaCuadro(imAlien2, 500);
+        
+        setAnimacion(aniAlien);
 
     }
 
-    public void act(int direction) {
-        this.iX += direction;
+    public void act(int iDirection) {
+        this.ix += iDirection;
     }
 
     public Bomb getBomb() {
@@ -36,23 +49,34 @@ public class Alien extends Sprite {
 
     public class Bomb extends Sprite {
 
-        private final String sBomb = "bomb.png";
-        private boolean bolDestroyed;
+        private final String bomb = "bomb.png";
+        private boolean bDestroyed; 
 
-        public Bomb(int x, int y) {
+        public Bomb(int ix, int iy) {
+            //Se posicionan las bombas
             setDestroyed(true);
-            this.iX = x;
-            this.iX = y;
-            ImageIcon ii = new ImageIcon(this.getClass().getResource(sBomb));
-            setImage(ii.getImage());
+            this.ix = ix;
+            this.iy = iy;
+            Animacion aniBomb;
+            
+            // Imagen de la bomba  
+            Image imBomb1 = Toolkit.getDefaultToolkit().getImage(
+                this.getClass().getResource("bomb.png"));
+            Image imBomb2 = Toolkit.getDefaultToolkit().getImage(
+                this.getClass().getResource("bomb2.png"));
+            
+            aniBomb = new Animacion();
+            aniBomb.sumaCuadro(imBomb1, 100);
+            aniBomb.sumaCuadro(imBomb2, 100);
+            setAnimacion(aniBomb);
         }
-
-        public void setDestroyed(boolean destroyed) {
-            this.bolDestroyed = destroyed;
+        //set
+        public void setDestroyed(boolean bdestroyed) {
+            this.bDestroyed = bdestroyed;
         }
-
+        //get
         public boolean isDestroyed() {
-            return bolDestroyed;
+            return bDestroyed;
         }
     }
 }
