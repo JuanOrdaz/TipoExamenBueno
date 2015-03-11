@@ -1,4 +1,6 @@
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 
@@ -14,54 +16,66 @@ import javax.swing.ImageIcon;
  */
 public class Player extends Sprite implements Commons{
 
-    private final int iSTART_Y = 440; 
-    private final int iSTART_X = 340;
+    private final int iSTART_Y = 460;       //inicio del Jugador en Y
+    private final int iSTART_X = 279;       //Inicio del jugador en X
 
-    private final String sPlayer = "ship.png";
-    private int iWidth;
+    //private final String player = "player.png"; //Imagen
 
     public Player() {
 
-        ImageIcon ii = new ImageIcon(this.getClass().getResource(sPlayer));
+        Animacion aniPlayer;
+        // Imagen de player   
+	Image imPlayer1 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("player.png"));
+        Image imPlayer2 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("player2.png"));
+        Image imPlayer3 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("player3.png"));
+        Image imPlayer4 = Toolkit.getDefaultToolkit().getImage(
+            this.getClass().getResource("player4.png"));
+        
+        aniPlayer = new Animacion();
+        aniPlayer.sumaCuadro(imPlayer1, 200);
+        aniPlayer.sumaCuadro(imPlayer2, 200);
+        aniPlayer.sumaCuadro(imPlayer3, 200);
 
-        iWidth = ii.getImage().getWidth(null); 
-
-        setImage(ii.getImage());
+        setAnimacion(aniPlayer);
         setX(iSTART_X);
         setY(iSTART_Y);
     }
 
     public void act() {
-        iX += iDx;
-        if (iX <= 2) 
-            iX = 2;
-        if (iX >= iBOARD_WIDTH - 2*iWidth) 
-            iX = iBOARD_WIDTH - 2*iWidth;
+        //Movimiento de la nave
+        ix += iDx;
+        //No deja que se salga la nave
+        if (ix <= 2) 
+            ix = 2;
+        if (ix >= BOARD_WIDTH - 2*this.getAncho()) 
+            ix = BOARD_WIDTH - 2*this.getAncho();
     }
 
-    public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT)
+    public void keyPressed(KeyEvent keE) {
+        int ikey = keE.getKeyCode();
+        //Detecta hacia donde se mueve la nave y lo manda.
+        if (ikey == KeyEvent.VK_LEFT)
         {
-            iDx = -2;
+            iDx = -3;
         }
 
-        if (key == KeyEvent.VK_RIGHT)
+        if (ikey == KeyEvent.VK_RIGHT)
         {
-            iDx = 2;
+            iDx = 3;
         }
     }
 
-    public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT)
+    public void keyReleased(KeyEvent keE) {
+        int ikey = keE.getKeyCode();
+        if (ikey == KeyEvent.VK_LEFT)
         {
             iDx = 0;
         }
 
-        if (key == KeyEvent.VK_RIGHT)
+        if (ikey == KeyEvent.VK_RIGHT)
         {
             iDx = 0;
         }
