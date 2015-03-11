@@ -9,8 +9,7 @@ import javax.swing.JFrame;
  *
  * @author http://zetcode.com/
  * 
- * Diego Ponce García A00812547
- * Viridiana González Castro A01203167
+ * 
  * 
  */
 public class SpaceInvaders extends JFrame implements Commons {
@@ -20,7 +19,7 @@ public class SpaceInvaders extends JFrame implements Commons {
         add(new Board());
         setTitle("Space Invaders");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(BOARD_WIDTH, BOARD_HEIGTH);
+        setSize(iBOARD_WIDTH, iBOARD_HEIGTH);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);

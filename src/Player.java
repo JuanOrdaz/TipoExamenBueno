@@ -26,13 +26,12 @@ public class Player extends Sprite implements Commons{
         Animacion aniPlayer;
         // Imagen de player   
 	Image imPlayer1 = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("player.png"));
+            this.getClass().getResource("ship.png"));
         Image imPlayer2 = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("player2.png"));
+            this.getClass().getResource("ship2.png"));
         Image imPlayer3 = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("player3.png"));
-        Image imPlayer4 = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("player4.png"));
+            this.getClass().getResource("ship3.png"));
+       
         
         aniPlayer = new Animacion();
         aniPlayer.sumaCuadro(imPlayer1, 200);
@@ -46,12 +45,12 @@ public class Player extends Sprite implements Commons{
 
     public void act() {
         //Movimiento de la nave
-        ix += iDx;
+        iX += iDx;
         //No deja que se salga la nave
-        if (ix <= 2) 
-            ix = 2;
-        if (ix >= BOARD_WIDTH - 2*this.getAncho()) 
-            ix = BOARD_WIDTH - 2*this.getAncho();
+        if (iX <= 2) 
+            iX = 2;
+        if (iX >= iBOARD_WIDTH - 2*this.getAncho()) 
+            iX = iBOARD_WIDTH - 2*this.getAncho();
     }
 
     public void keyPressed(KeyEvent keE) {

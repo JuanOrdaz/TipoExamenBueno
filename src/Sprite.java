@@ -23,8 +23,8 @@ public class Sprite {
 
         private boolean bVisible;       //Visibilidad del sprite
         private Animacion aniSprite;    //Animacion del sprite
-        protected int ix;               //X del sprite
-        protected int iy;               //Y del sprite
+        protected int iX;               //X del sprite
+        protected int iY;               //Y del sprite
         protected boolean bDying;       //Muerte del sprite
         protected int iDx;
 
@@ -57,18 +57,18 @@ public class Sprite {
         }
 
         public void setX(int x) {
-            this.ix = x;
+            this.iX = x;
         }
 
         public void setY(int y) {
-            this.iy = y;
+            this.iY = y;
         }
         public int getY() {
-            return iy;
+            return iY;
         }
 
         public int getX() {
-            return ix;
+            return iX;
         }
         
         //Regresa a la imagen original

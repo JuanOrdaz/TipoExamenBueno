@@ -25,19 +25,17 @@ public class Shot extends Sprite {
         Animacion aniShot;
             // Imágenes del disparo de la nave    
             Image imShot1 = Toolkit.getDefaultToolkit().getImage(
-                this.getClass().getResource("fire.png"));
+                this.getClass().getResource("ball.png"));
             Image imShot2 = Toolkit.getDefaultToolkit().getImage(
-                this.getClass().getResource("fire2.png"));
+                this.getClass().getResource("ball2.png"));
             Image imShot3 = Toolkit.getDefaultToolkit().getImage(
-                this.getClass().getResource("fire3.png"));
-            Image imShot4 = Toolkit.getDefaultToolkit().getImage(
-                this.getClass().getResource("fire4.png"));
+                this.getClass().getResource("ball3.png"));
+         
          
             aniShot = new Animacion();
             aniShot.sumaCuadro(imShot1, 100);
             aniShot.sumaCuadro(imShot2, 100);
             aniShot.sumaCuadro(imShot3, 100);
-            aniShot.sumaCuadro(imShot4, 100);
 
             setAnimacion(aniShot);
             

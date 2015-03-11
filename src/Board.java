@@ -34,8 +34,8 @@ import java.util.ArrayList;
  *
  * @author http://zetcode.com/
  * 
- * @author Diego Ponce García A00812547
- * @author Viridiana González Castro A01203167
+ * @author Daniela Ramírez Reyes A01139581
+ * @author Juan Ordaz
  * 
  */
 
@@ -87,7 +87,7 @@ public class Board extends JPanel implements Runnable, Commons {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-        Dim = new Dimension(BOARD_WIDTH, BOARD_HEIGTH);
+        Dim = new Dimension(iBOARD_WIDTH, iBOARD_HEIGTH);
         setBackground(Color.black);
 
         init();
@@ -130,11 +130,11 @@ public class Board extends JPanel implements Runnable, Commons {
         //Se inician los agradecimientos en falso
         bAgrad = false;
         
-        sndColisionMalo = new SoundClip("explosion1.wav");
-        sndMuerte = new SoundClip("explosion2.wav");
-        sndDisparo = new SoundClip("shoot.wav");
+        sndColisionMalo = new SoundClip("impact1.wav");
+        sndMuerte = new SoundClip("impact2.wav");
+        sndDisparo = new SoundClip("shot.wav");
         // Sonido para la música de fondo
-        sndSonidoFondo = new SoundClip("fondo.wav");
+        sndSonidoFondo = new SoundClip("back.wav");
         sndSonidoFondo.setLooping(true);
         sndSonidoFondo.play();
         
@@ -214,17 +214,17 @@ public class Board extends JPanel implements Runnable, Commons {
     public void drawPause(Graphics graGrafico) {
         if(bAgrad){
             Image imaImagen = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("autores.png"));
+            this.getClass().getResource("Credits.jpg"));
             graGrafico.drawImage(imaImagen, 0,0, this);
         }
         else if(bInst){
             Image imaImagen = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("instrucciones.png"));
+            this.getClass().getResource("instrucciones.jpg"));
             graGrafico.drawImage(imaImagen, 0, 0, this);
         }
         else{
             Image imaImagen = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("pausa.png"));
+            this.getClass().getResource("background.jpg"));
             graGrafico.drawImage(imaImagen, 0, 0, this);
         }
     }
@@ -233,14 +233,14 @@ public class Board extends JPanel implements Runnable, Commons {
     {
         super.paint(graGrafico);
         Image imaFondo = Toolkit.getDefaultToolkit().getImage(
-            this.getClass().getResource("fondo.png"));
+            this.getClass().getResource("background.jpg"));
         graGrafico.setColor(Color.black);
         graGrafico.fillRect(0, 0, Dim.width, Dim.height);
         graGrafico.setColor(Color.green);   
         graGrafico.drawImage(imaFondo, 0, 0, this);
         if(bIngame){
             if(!bPause){
-                graGrafico.drawLine(0, GROUND, BOARD_WIDTH, GROUND);
+                graGrafico.drawLine(0, iGROUND, iBOARD_WIDTH, iGROUND);
                 drawAliens(graGrafico);
                 drawPlayer(graGrafico);
                 drawShot(graGrafico);
@@ -259,20 +259,20 @@ public class Board extends JPanel implements Runnable, Commons {
         Graphics graGrafico = this.getGraphics();
 
         graGrafico.setColor(Color.black);
-        graGrafico.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGTH);
+        graGrafico.fillRect(0, 0, iBOARD_WIDTH, iBOARD_HEIGTH);
 
         graGrafico.setColor(new Color(0, 32, 48));
-        graGrafico.fillRect(50, BOARD_WIDTH/2 - 30, BOARD_WIDTH-100, 50);
+        graGrafico.fillRect(50, iBOARD_WIDTH/2 - 30, iBOARD_WIDTH-100, 50);
         graGrafico.setColor(Color.white);
-        graGrafico.drawRect(50, BOARD_WIDTH/2 - 30, BOARD_WIDTH-100, 50);
+        graGrafico.drawRect(50, iBOARD_WIDTH/2 - 30, iBOARD_WIDTH-100, 50);
 
         Font small = new Font("Helvetica", Font.BOLD, 20);
         FontMetrics metr = this.getFontMetrics(small);
 
         graGrafico.setColor(Color.white);
         graGrafico.setFont(small);
-        graGrafico.drawString(sMessage, (BOARD_WIDTH - metr.stringWidth(sMessage))/2, 
-            BOARD_WIDTH/2);
+        graGrafico.drawString(sMessage, (iBOARD_WIDTH - metr.stringWidth(sMessage))/2, 
+            iBOARD_WIDTH/2);
     }
 
     public void animationCycle()  {
@@ -290,7 +290,7 @@ public class Board extends JPanel implements Runnable, Commons {
         
         plaPlayer.setActualiza(lTimeAct);
          
-        if (iDead == NUMBER_OF_ALIENS_TO_DESTROY) {
+        if (iDead == iNUMBER_OF_ALIENS_TO_DESTROY) {
             bIngame = false;
             sMessage = "Game won!";
         }
@@ -332,22 +332,22 @@ public class Board extends JPanel implements Runnable, Commons {
              Alien a1 = (Alien) it1.next();
              int x = a1.getX();
 
-             if (x  >= BOARD_WIDTH - BORDER_RIGHT && iDirection != -1) {
+             if (x  >= iBOARD_WIDTH - iBORDER_RIGHT && iDirection != -1) {
                  iDirection = -1;
                  Iterator i1 = arrAliens.iterator();
                  while (i1.hasNext()) {
                      Alien a2 = (Alien) i1.next();
-                     a2.setY(a2.getY() + GO_DOWN);
+                     a2.setY(a2.getY() + iGO_DOWN);
                  }
              }
 
-            if (x <= BORDER_LEFT && iDirection != 1) {
+            if (x <= iBORDER_LEFT && iDirection != 1) {
                 iDirection = 1;
 
                 Iterator i2 = arrAliens.iterator();
                 while (i2.hasNext()) {
                     Alien a = (Alien)i2.next();
-                    a.setY(a.getY() + GO_DOWN);
+                    a.setY(a.getY() + iGO_DOWN);
                 }
             }
         }
@@ -361,7 +361,7 @@ public class Board extends JPanel implements Runnable, Commons {
 
                 int y = alien.getY();
 
-                if (y > GROUND - ALIEN_HEIGHT) {
+                if (y > iGROUND - iALIEN_HEIGHT) {
                     bIngame = false;
                     sMessage = "Invasion!";
                 }
@@ -378,7 +378,7 @@ public class Board extends JPanel implements Runnable, Commons {
             int shot = generator.nextInt(15);
             Alien a = (Alien) i3.next();
             Alien.Bomb b = a.getBomb();
-            if (shot == CHANCE && a.isVisible() && b.isDestroyed()) {
+            if (shot == iCHANCE && a.isVisible() && b.isDestroyed()) {
 
                 b.setDestroyed(false);
                 b.setX(a.getX());
@@ -398,7 +398,7 @@ public class Board extends JPanel implements Runnable, Commons {
 
             if (!b.isDestroyed()) {
                 b.setY(b.getY() + 2);   
-                if (b.getY() >= GROUND - BOMB_HEIGHT) {
+                if (b.getY() >= iGROUND - iBOMB_HEIGHT) {
                     b.setDestroyed(true);
                 }
             }
