@@ -29,6 +29,8 @@ public class Board extends JPanel implements Runnable, Commons {
     private ArrayList alAliens;
     private Player plaPlayer;
     private Shot shoShot;
+    private boolean bPausa = false;
+    private boolean bInfo = false;
 
     private int iAlienX = 150;
     private int iAlienY = 5;
@@ -134,7 +136,10 @@ public class Board extends JPanel implements Runnable, Commons {
     public void paint(Graphics g)
     {
       super.paint(g);
-
+      if(bInfo)
+      {
+          
+      }
       g.setColor(Color.black);
       g.fillRect(0, 0, dDim.width, dDim.height);
       g.setColor(Color.green);   
@@ -314,8 +319,11 @@ public class Board extends JPanel implements Runnable, Commons {
         beforeTime = System.currentTimeMillis();
 
         while (bIngame) {
-            repaint();
-            animationCycle();
+            if(!bPausa)
+            {
+                repaint();
+                animationCycle();
+            }
 
             timeDiff = System.currentTimeMillis() - beforeTime;
             sleep = iDELAY - timeDiff;
@@ -336,6 +344,28 @@ public class Board extends JPanel implements Runnable, Commons {
 
         public void keyReleased(KeyEvent e) {
             plaPlayer.keyReleased(e);
+            if (e.getKeyCode() == KeyEvent.VK_P)
+            {
+                if(!bPausa)
+                {
+                    bPausa = true;
+                }
+                else
+                {
+                    bPausa = false;
+                }
+            }
+            else if (e.getKeyCode() == KeyEvent.VK_I)
+            {
+                if(!bInfo)
+                {
+                    bInfo = true;
+                }
+                else
+                {
+                    bInfo = false;
+                }
+            }
         }
 
         public void keyPressed(KeyEvent e) {
